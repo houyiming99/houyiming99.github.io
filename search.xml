@@ -32,6 +32,12 @@
 <p>正值春运时期，对武汉封城，意味着武汉上千万人不能和家人团聚，生活完全不能正常进行。</p>
 <p>在疫情相当严重的现在，已经成为全国性恐慌的现在，大家都觉得封城，不团聚，生活不便，都是自然而然的事情。</p>
 ]]></content>
+      <categories>
+        <category>基础算法</category>
+      </categories>
+      <tags>
+        <tag>好玩</tag>
+      </tags>
   </entry>
   <entry>
     <title>侯一鸣</title>
@@ -56,5 +62,8 @@
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 ]]></content>
+      <tags>
+        <tag>贪心</tag>
+      </tags>
   </entry>
 </search>
