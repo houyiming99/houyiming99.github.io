@@ -40,7 +40,6 @@
         <category>一些题</category>
       </categories>
       <tags>
-        <tag>基础算法</tag>
         <tag>归并排序</tag>
       </tags>
   </entry>
@@ -71,7 +70,6 @@
       </categories>
       <tags>
         <tag>思维</tag>
-        <tag>基础算法</tag>
       </tags>
   </entry>
   <entry>
@@ -91,7 +89,6 @@
       </categories>
       <tags>
         <tag>记忆化搜索</tag>
-        <tag>基础算法</tag>
       </tags>
   </entry>
   <entry>
@@ -130,11 +127,8 @@
 <h2 id="M"><a href="#M" class="headerlink" title="M"></a>M</h2><p><strong>题意</strong><br>给你n个字符串，你可以对他随意组合，使其形成一个新的字符串，求里边子串AB的个数。<br><strong>思路</strong><br>能形成AB的无非两种情况，第一个是字符串里边本来就包含AB，第二个是字符串头为B与另一个字符串的尾A组合为AB<br>将开头为B结尾为A的kai、仅开头为B的、仅开头为A的分别统计，先让开头为B结尾为A的自行组合，然后让仅开头为B的和仅开头为A的补上，最后加上字符串之间的AB，即为所求。</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;math.h&gt; </span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line">ll n;</span><br><span class="line"><span class="keyword">int</span> len[<span class="number">10000</span>+<span class="number">100</span>];</span><br><span class="line"><span class="keyword">char</span> s[<span class="number">10000</span>+<span class="number">100</span>][<span class="number">100</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;s[i];</span><br><span class="line">		len[i]=<span class="built_in">strlen</span>(s[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	ll a=<span class="number">0</span>,b=<span class="number">0</span>,sum=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> ss=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(s[i][<span class="number">0</span>]==<span class="string">'B'</span>&amp;&amp;s[i][len[i]<span class="number">-1</span>]==<span class="string">'A'</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			ss++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(s[i][<span class="number">0</span>]==<span class="string">'B'</span>) </span><br><span class="line">		&#123;</span><br><span class="line">			b++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(s[i][len[i]<span class="number">-1</span>]==<span class="string">'A'</span>) </span><br><span class="line">		&#123;</span><br><span class="line">			a++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;len[i]<span class="number">-1</span>;j++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(s[i][j]==<span class="string">'A'</span>&amp;&amp;s[i][j+<span class="number">1</span>]==<span class="string">'B'</span>) sum++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="comment">//	printf("%d %d %d %d\n",ss,sum,a,b);</span></span><br><span class="line">	<span class="keyword">if</span>(ss==<span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		sum=sum+min(a,b);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(b&gt;<span class="number">0</span>&amp;&amp;a&gt;<span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			sum=sum+ss+<span class="number">1</span>+min(a<span class="number">-1</span>,b<span class="number">-1</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>((a&gt;<span class="number">0</span>&amp;&amp;b==<span class="number">0</span>)||b&gt;<span class="number">0</span>&amp;&amp;a==<span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			sum=sum+ss;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(a==<span class="number">0</span>&amp;&amp;b==<span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			sum=sum+ss<span class="number">-1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,sum);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>补题</category>
+        <category>一些题</category>
       </categories>
-      <tags>
-        <tag>补题</tag>
-      </tags>
   </entry>
   <entry>
     <title>19年11月10号个人训练赛补题</title>
@@ -157,11 +151,8 @@
 <h2 id="K"><a href="#K" class="headerlink" title="K"></a>K</h2><p><strong>题意</strong><br>x=a+b y=a-b<br>求 a<em>b<br><strong>思路</strong><br>(a+b)</em>(a-b)/4 即为答案</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> a,b;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;a&gt;&gt;b;</span><br><span class="line">	<span class="keyword">int</span> c=(a+b)/<span class="number">2</span>;</span><br><span class="line">	<span class="keyword">int</span> d=(a-b)/<span class="number">2</span>;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,c*d);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>补题</category>
+        <category>一些题</category>
       </categories>
-      <tags>
-        <tag>补题</tag>
-      </tags>
   </entry>
   <entry>
     <title>GCD + LCM + 素数打表 + 快速幂</title>
@@ -188,8 +179,5 @@
       <categories>
         <category>模板</category>
       </categories>
-      <tags>
-        <tag>模板</tag>
-      </tags>
   </entry>
 </search>
