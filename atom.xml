@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-02-14T03:13:09.558Z</updated>
+  <updated>2020-02-15T08:17:01.039Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,48 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>高精度乘与除 </title>
+    <link href="http://yoursite.com/2020/02/15/%E9%AB%98%E7%B2%BE%E5%BA%A6%E4%B9%98%E4%B8%8E%E9%99%A4/"/>
+    <id>http://yoursite.com/2020/02/15/%E9%AB%98%E7%B2%BE%E5%BA%A6%E4%B9%98%E4%B8%8E%E9%99%A4/</id>
+    <published>2020-02-15T08:03:41.000Z</published>
+    <updated>2020-02-15T08:17:01.039Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;当数的位数过多，爆long long时，进行乘除操作就要用到高精度。
+    
+    </summary>
+    
+    
+      <category term="模板" scheme="http://yoursite.com/categories/%E6%A8%A1%E6%9D%BF/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>洛谷P1080 国王游戏</title>
+    <link href="http://yoursite.com/2020/02/15/%E6%B4%9B%E8%B0%B7P1080-%E5%9B%BD%E7%8E%8B%E6%B8%B8%E6%88%8F/"/>
+    <id>http://yoursite.com/2020/02/15/%E6%B4%9B%E8%B0%B7P1080-%E5%9B%BD%E7%8E%8B%E6%B8%B8%E6%88%8F/</id>
+    <published>2020-02-15T06:25:51.000Z</published>
+    <updated>2020-02-15T08:03:14.340Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;超级会玩的国王&lt;/strong&gt;
+    
+    </summary>
+    
+    
+      <category term="一些题" scheme="http://yoursite.com/categories/%E4%B8%80%E4%BA%9B%E9%A2%98/"/>
+    
+    
+      <category term="贪心" scheme="http://yoursite.com/tags/%E8%B4%AA%E5%BF%83/"/>
+    
+      <category term="高精度" scheme="http://yoursite.com/tags/%E9%AB%98%E7%B2%BE%E5%BA%A6/"/>
+    
+  </entry>
   
   <entry>
     <title>大二数据结构排序作业</title>

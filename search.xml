@@ -1,6 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>高精度乘与除 </title>
+    <url>/2020/02/15/%E9%AB%98%E7%B2%BE%E5%BA%A6%E4%B9%98%E4%B8%8E%E9%99%A4/</url>
+    <content><![CDATA[<p>当数的位数过多，爆long long时，进行乘除操作就要用到高精度。<a id="more"></a></p>
+<h2 id="高精度乘"><a href="#高精度乘" class="headerlink" title="高精度乘"></a>高精度乘</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 初始化 sum[10000]=&#123;0,1&#125;,lens=1;</span></span><br><span class="line"><span class="comment">// sum数组后面为高位，前面为低位，lens记录数组sum的长度。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">times</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> x)</span><span class="comment">//x 为要乘进去的数</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> t=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=lens;i++)&#123;</span><br><span class="line">		sum[i]*=x;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=lens;i++)&#123;</span><br><span class="line">		t+=sum[i];</span><br><span class="line">		sum[i]=t%<span class="number">10</span>;</span><br><span class="line">		t/=<span class="number">10</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span>(t!=<span class="number">0</span>)&#123;</span><br><span class="line">		lens++;</span><br><span class="line">		sum[lens]=t%<span class="number">10</span>;</span><br><span class="line">		t/=<span class="number">10</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="高精度除"><a href="#高精度除" class="headerlink" title="高精度除"></a>高精度除</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// sum为高精度的被除数，x为除数，数组ans里存的是商（后边为高位，前边为低位）。</span></span><br><span class="line"><span class="comment">// lend记录数组ans的长度。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">division</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> t=<span class="number">0</span>;</span><br><span class="line">	lend=lens;</span><br><span class="line">	<span class="built_in">memset</span>(ans,<span class="number">0</span>,<span class="keyword">sizeof</span>(ans));</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=lend;i&gt;=<span class="number">1</span>;i--)&#123;</span><br><span class="line">		t*=<span class="number">10</span>;</span><br><span class="line">		t+=sum[i];</span><br><span class="line">		<span class="keyword">if</span>(t&gt;=x)&#123;</span><br><span class="line">			ans[i]=t/x;</span><br><span class="line">			t%=x;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span>(ans[lend]==<span class="number">0</span>)&#123;</span><br><span class="line">		<span class="keyword">if</span>(lend==<span class="number">1</span>)</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		lend--;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>模板</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>洛谷P1080 国王游戏</title>
+    <url>/2020/02/15/%E6%B4%9B%E8%B0%B7P1080-%E5%9B%BD%E7%8E%8B%E6%B8%B8%E6%88%8F/</url>
+    <content><![CDATA[<p><strong>超级会玩的国王</strong><a id="more"></a></p>
+<p>会玩的国王<!--more--></p>
+<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>恰逢 H国国庆，国王邀请n 位大臣来玩一个有奖游戏。首先，他让每个大臣在左、右手上面分别写下一个整数，国王自己也在左、右手上各写一个整数。然后，让这 n位大臣排成一排，国王站在队伍的最前面。排好队后，所有的大臣都会获得国王奖赏的若干金币，每位大臣获得的金币数分别是：排在该大臣前面的所有人的左手上的数的乘积除以他自己右手上的数，然后向下取整得到的结果。</p>
+<p>国王不希望某一个大臣获得特别多的奖赏，所以他想请你帮他重新安排一下队伍的顺序，使得获得奖赏最多的大臣，所获奖赏尽可能的少。注意，国王的位置始终在队伍的最前面。</p>
+<h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>第一行包含一个整数n，表示大臣的人数。</p>
+<p>第二行包含两个整数 a和 b，之间用一个空格隔开，分别表示国王左手和右手上的整数。</p>
+<p>接下来 n行，每行包含两个整数a 和 b，之间用一个空格隔开，分别表示每个大臣左手和右手上的整数。</p>
+<h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>一个整数，表示重新排列后的队伍中获奖赏最多的大臣所获得的金币数。</p>
+<h2 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h2><p><strong>输入 #1</strong>复制</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">3 </span><br><span class="line">1 1 </span><br><span class="line">2 3 </span><br><span class="line">7 4 </span><br><span class="line">4 6</span><br></pre></td></tr></table></figure>
+
+<p><strong>输出 #1</strong>复制</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">2</span><br></pre></td></tr></table></figure>
+
+<h2 id="说明-提示"><a href="#说明-提示" class="headerlink" title="说明/提示"></a>说明/提示</h2><p>【输入输出样例说明】</p>
+<p>按1、2、3 这样排列队伍，获得奖赏最多的大臣所获得金币数为 2；</p>
+<p>按 1、3、2这样排列队伍，获得奖赏最多的大臣所获得金币数为2；</p>
+<p>按 2、1、3 这样排列队伍，获得奖赏最多的大臣所获得金币数为 2；</p>
+<p>按2、3、1这样排列队伍，获得奖赏最多的大臣所获得金币数为9；</p>
+<p>按 3、1、2这样排列队伍，获得奖赏最多的大臣所获得金币数为 2；</p>
+<p>按3、2、1 这样排列队伍，获得奖赏最多的大臣所获得金币数为 9。</p>
+<p>因此，奖赏最多的大臣最少获得 2个金币，答案输出 2。</p>
+<p>【数据范围】</p>
+<p>对于 20%的数据，有 1≤ n≤ 10,0 &lt; a,b &lt; 8；</p>
+<p>对于 40%的数据，有1≤ n≤20,0 &lt; a,b &lt; 8；</p>
+<p>对于 60%的数据，有 1≤ n≤100；</p>
+<p>对于 60%的数据，保证答案不超过 10^9；</p>
+<p>对于 100%的数据，有 1 ≤ n ≤1,000,0 &lt; a,b &lt; 10000。</p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>本题的代码并不难写，主要是思路的分析，分析如下。</p>
+<p>我们对于国王身后的两个点来分析</p>
+<p>队列可能是这样的：</p>
+<table>
+<thead>
+<tr>
+<th align="left">*</th>
+<th align="right">Left</th>
+<th align="center">Right</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">king:</td>
+<td align="right"><em>a</em>0</td>
+<td align="center"><em>b</em>0</td>
+</tr>
+<tr>
+<td align="left">p1</td>
+<td align="right">a1</td>
+<td align="center"><em>b</em>1</td>
+</tr>
+<tr>
+<td align="left">p2</td>
+<td align="right">a2</td>
+<td align="center">b2</td>
+</tr>
+</tbody></table>
+<p>那么我们计算可得<br>$$<br>ans_1=max(\frac{a_0}{b_1},\frac{a_0*a_1}{b_2})<br>$$<br>队列也有可能是这样的</p>
+<table>
+<thead>
+<tr>
+<th align="left">*</th>
+<th align="right">Left</th>
+<th align="center">Right</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">king:</td>
+<td align="right"><em>a</em>0</td>
+<td align="center"><em>b</em>0</td>
+</tr>
+<tr>
+<td align="left">p2</td>
+<td align="right"><em>a</em>2</td>
+<td align="center"><em>b</em>2</td>
+</tr>
+<tr>
+<td align="left">p1</td>
+<td align="right"><em>a</em>1</td>
+<td align="center"><em>b</em>1</td>
+</tr>
+</tbody></table>
+<p>那么我们计算可得<br>$$<br>ans_2=max(\frac{a_0}{b_2},\frac{a_0<em>a_2}{b_1})<br>$$<br>我们来对比一下两个答案：<br>$$<br>ans_1=max(\frac{a_0}{b_1},\frac{a_0</em>a_1}{b_2}),<br>ans_2=max(\frac{a_0}{b_2},\frac{a_0<em>a_2}{b_1})<br>$$<br>显然我们可以得到:<br>$$<br>\frac{a_0</em>a_1}{b_2}&gt;\frac{a_0}{b_2},</p>
+<p>\frac{a_0<em>a_2}{b_1}&gt;\frac{a_0}{b_1}<br>$$<br>如果<br>$$<br>ans_1&lt;ans_2<br>$$<br>那么易得：<br>$$<br>\frac{a_0</em>a_2}{b_1}&gt;\frac{a_0<em>a_1}{b_2}<br>$$<br>变形可得：<br>$$<br>a_1</em>b_1&lt;a_2<em>b_2<br>$$<br>当<br>$$<br>a_1</em>b_1&lt;a_2*b_2<br>$$<br>时，我们也能够得到<br>$$<br>ans_1&lt;ans_2<br>$$<br>的结论</p>
+<p>所以，为了ans取到最小值，我们需要将<br>$$<br>a_i*b_i<br>$$<br>较小的放在前面</p>
+<p>那么我们以<br>$$<br>a_i*b_i<br>$$<br>为关键字排序即可</p>
+<p>统计答案时一定<strong>不要忘了写高精度！</strong></p>
+<h2 id="AC-code"><a href="#AC-code" class="headerlink" title="AC code"></a>AC code</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n,a,b;</span><br><span class="line"><span class="keyword">int</span> sum[<span class="number">100000</span>]=&#123;<span class="number">0</span>,<span class="number">1</span>&#125;,ans[<span class="number">100000</span>],m[<span class="number">100000</span>],lens=<span class="number">1</span>,lend=<span class="number">1</span>,lenm=<span class="number">1</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stt</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> l,r;</span><br><span class="line">	<span class="keyword">int</span> lr;</span><br><span class="line">&#125;st[<span class="number">10000000</span>];</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(stt p,stt q)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> p.lr&lt;q.lr;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">times</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> x)</span><span class="comment">//高精度乘</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> t=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=lens;i++)&#123;</span><br><span class="line">		sum[i]*=x;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=lens;i++)&#123;</span><br><span class="line">		t+=sum[i];</span><br><span class="line">		sum[i]=t%<span class="number">10</span>;</span><br><span class="line">		t/=<span class="number">10</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span>(t!=<span class="number">0</span>)&#123;</span><br><span class="line">		lens++;</span><br><span class="line">		sum[lens]=t%<span class="number">10</span>;</span><br><span class="line">		t/=<span class="number">10</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">division</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> x)</span><span class="comment">//高精度除</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> t=<span class="number">0</span>;</span><br><span class="line">	lend=lens;</span><br><span class="line">	<span class="built_in">memset</span>(ans,<span class="number">0</span>,<span class="keyword">sizeof</span>(ans));</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=lend;i&gt;=<span class="number">1</span>;i--)&#123;</span><br><span class="line">		t*=<span class="number">10</span>;</span><br><span class="line">		t+=sum[i];</span><br><span class="line">		<span class="keyword">if</span>(t&gt;=x)&#123;</span><br><span class="line">			ans[i]=t/x;</span><br><span class="line">			t%=x;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span>(ans[lend]==<span class="number">0</span>)&#123;</span><br><span class="line">		<span class="keyword">if</span>(lend==<span class="number">1</span>)</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		lend--;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(lenm&lt;lend)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=lend;i++)&#123;</span><br><span class="line">			m[i]=ans[i];</span><br><span class="line">		&#125;</span><br><span class="line">		lenm=lend;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(lenm==lend)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=lend;i&gt;=<span class="number">1</span>;i--)&#123;</span><br><span class="line">			<span class="keyword">if</span>(m[i]&lt;ans[i])&#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=lend;j++)</span><br><span class="line">					m[j]=ans[j];</span><br><span class="line">				lenm=lend;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;st[i].l&gt;&gt;st[i].r;</span><br><span class="line">		st[i].lr=st[i].l*st[i].r;</span><br><span class="line">	&#125; </span><br><span class="line">	sort(st+<span class="number">1</span>,st+<span class="number">1</span>+n,cmp);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		times(st[i<span class="number">-1</span>].l);</span><br><span class="line">		division(st[i].r);</span><br><span class="line">		solve();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=lenm;i&gt;=<span class="number">1</span>;i--)</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d"</span>,m[i]);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>一些题</category>
+      </categories>
+      <tags>
+        <tag>贪心</tag>
+        <tag>高精度</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>大二数据结构排序作业</title>
     <url>/2020/02/12/%E5%A4%A7%E4%BA%8C%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%8E%92%E5%BA%8F%E4%BD%9C%E4%B8%9A/</url>
     <content><![CDATA[<p>通过对数据结构的学习，本程序将7种常见的排序算法整理结合在一起，通过比较同一数据下的排序所需要的时间和交换比较次数，更加明显的认识到各种排序算法的优劣，文末有生成的随机数提供。<a id="more"></a></p>
