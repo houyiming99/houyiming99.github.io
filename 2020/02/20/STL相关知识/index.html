@@ -6,7 +6,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    高精度乘与除  |  Super Monkey
+    STL相关知识 |  Super Monkey
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -32,7 +32,7 @@
   <div id="app">
     <main class="content">
       <section class="outer">
-  <article id="post-高精度乘与除" class="article article-type-post" itemscope
+  <article id="post-STL相关知识" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -40,7 +40,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  高精度乘与除 
+  STL相关知识
 </h1>
   
 
@@ -49,12 +49,12 @@
 
     
     <div class="article-meta">
-      <a href="/2020/02/15/%E9%AB%98%E7%B2%BE%E5%BA%A6%E4%B9%98%E4%B8%8E%E9%99%A4/" class="article-date">
-  <time datetime="2020-02-15T08:03:41.000Z" itemprop="datePublished">2020-02-15</time>
+      <a href="/2020/02/20/STL%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/" class="article-date">
+  <time datetime="2020-02-20T09:00:57.000Z" itemprop="datePublished">2020-02-20</time>
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%A8%A1%E6%9D%BF/">模板</a>
+    <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>
   </div>
 
       
@@ -64,7 +64,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">222字</span>
+            <span class="post-count">1.1k字</span>
         </span>
     </span>
 
@@ -73,7 +73,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">1分钟</span>
+            <span class="post-count">4分钟</span>
         </span>
     </span>
 </div>
@@ -99,9 +99,50 @@
       
 
       
-      <p><strong>当数的位数过多，爆long long时，进行乘除操作就要用到高精度</strong>。<a id="more"></a></p>
-<h2 id="高精度乘"><a href="#高精度乘" class="headerlink" title="高精度乘"></a>高精度乘</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 初始化 sum[10000]=&#123;0,1&#125;,lens=1;</span></span><br><span class="line"><span class="comment">// sum数组后面为高位，前面为低位，lens记录数组sum的长度。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">times</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> x)</span><span class="comment">//x 为要乘进去的数</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> t=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=lens;i++)&#123;</span><br><span class="line">		sum[i]*=x;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=lens;i++)&#123;</span><br><span class="line">		t+=sum[i];</span><br><span class="line">		sum[i]=t%<span class="number">10</span>;</span><br><span class="line">		t/=<span class="number">10</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span>(t!=<span class="number">0</span>)&#123;</span><br><span class="line">		lens++;</span><br><span class="line">		sum[lens]=t%<span class="number">10</span>;</span><br><span class="line">		t/=<span class="number">10</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="高精度除"><a href="#高精度除" class="headerlink" title="高精度除"></a>高精度除</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// sum为高精度的被除数，x为除数，数组ans里存的是商（后边为高位，前边为低位）。</span></span><br><span class="line"><span class="comment">// lend记录数组ans的长度。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">division</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> t=<span class="number">0</span>;</span><br><span class="line">	lend=lens;</span><br><span class="line">	<span class="built_in">memset</span>(ans,<span class="number">0</span>,<span class="keyword">sizeof</span>(ans));</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=lend;i&gt;=<span class="number">1</span>;i--)&#123;</span><br><span class="line">		t*=<span class="number">10</span>;</span><br><span class="line">		t+=sum[i];</span><br><span class="line">		<span class="keyword">if</span>(t&gt;=x)&#123;</span><br><span class="line">			ans[i]=t/x;</span><br><span class="line">			t%=x;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span>(ans[lend]==<span class="number">0</span>)&#123;</span><br><span class="line">		<span class="keyword">if</span>(lend==<span class="number">1</span>)</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		lend--;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      <p>﻿<strong>C++的标准模板库（Standard Template Library，简称STL）是一个容器和算法的类库。容器往往包含同一类型的数据。STL中比较常用的容器是vector，set和map等</strong>。<a id="more"></a></p>
+<h1 id="vectore"><a href="#vectore" class="headerlink" title="vectore"></a>vectore</h1><p>一个vector类似于一个动态的一维数组,vector中可以存在重复的元素！</p>
+<h2 id="1-声明"><a href="#1-声明" class="headerlink" title="1 声明"></a>1 声明</h2><p>(1) vector<int> a;          // 声明一个元素为int类型的vector a<br>(2) vectot<MyType> a;       // 声明一个元素为MyType类型的vector a<br>a包含0个元素，即a.size()的值为0，但它是动态的，其大小会随着数据的插入和删除改变而改变。<br>(3) vector<int> a(100, 0);  // 这里声明的是一个已经存放了100个0的整数vector</p>
+<h2 id="2-遍历"><a href="#2-遍历" class="headerlink" title="2 遍历"></a>2 遍历</h2><p>(1) for(vector<datatype>::iterator it=a.begin(); it!=a.end(); it++)<br>                    cout&lt;&lt;*it&lt;&lt;endl;<br>(2). for(int i = 0; i &lt; a.size(); i++)<br>                    cout&lt;&lt;a[i]&lt;&lt;endl;</p>
+<h3 id="3-其他操作"><a href="#3-其他操作" class="headerlink" title="3 其他操作"></a>3 其他操作</h3><p>a.size();                      返回vector的大小，即包含的元素个数<br>a.pop_back();            删除vector末尾的元素，vector大小相应减一<br>a.push_back();          用于在vector的末尾添加元素<br>a.back();                     返回vector末尾的元素<br>a.clear();                     将vector清空，vector大小变为0<br>a.at()                           得到编号位置的数据<br>a.begin()                     得到数组头的指针<br>a.end()                        得到数组的最后一个单元+1的指针<br>a.front()                      得到数组头的引用<br>a.back()                       得到数组的最后一个单元的引用<br>a. max_size()              得到vector最大可以是多大<br>a.capacity()                 当前vector分配的大小<br>a.size()                        当前使用数据的大小<br>a.resize()                     改变当前使用数据的大小，如果它比当前使用的大，则填充默认值<br>a.reserve()                   改变当前vecotr所分配空间的大小<br>a.erase()                      删除指针指向的数据项<br>a.clear()                       清空当前的vector<br>a.rbegin()                     将vector反转后的开始指针返回(其实就是原来的end-1)<br>a.rend()                        将vector反转构的结束指针返回(其实就是原来的begin-1)<br>a.empty()                     判断vector是否为空<br>a.swap()                       与另一个vector交换数据</p>
+<h1 id="map"><a href="#map" class="headerlink" title="map"></a>map</h1><p>Map是STL的一个关联容器，它提供一对一（其中第一个可以称为关键字，每个关键字只能在map中出现一次，第二个可能称为该关键字的值）的数据处理能力。</p>
+<h2 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="built_in">string</span>&gt; mp;</span><br></pre></td></tr></table></figure>
+<h2 id="数据插入"><a href="#数据插入" class="headerlink" title="数据插入"></a>数据插入</h2><p>在构造map容器后，我们就可以往里面插入数据了。这里讲三种插入数据的方法：<br>第一种：用insert函数插入pair数据</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="built_in">string</span>&gt; mapStudent;</span><br><span class="line">mapStudent.insert(pair&lt;<span class="keyword">int</span>, <span class="built_in">string</span>&gt;(<span class="number">1</span>,“student_one”));</span><br></pre></td></tr></table></figure>
+<p>第二种：用insert函数插入value_type数据</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="built_in">string</span>&gt; mapStudent;</span><br><span class="line">mapStudent.insert(<span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="built_in">string</span>&gt;::value_type (<span class="number">1</span>,<span class="string">"student_one"</span>));</span><br><span class="line">mapStudent.insert(make_pair(<span class="number">1</span>, <span class="string">"student_one"</span>));</span><br></pre></td></tr></table></figure>
+<p>第三种：用数组方式插入数据</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="built_in">string</span>&gt; mapStudent;</span><br><span class="line">mapStudent[<span class="number">1</span>] = “student_one”;</span><br><span class="line">mapStudent[<span class="number">2</span>] = “student_two”;</span><br></pre></td></tr></table></figure>
+<h2 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h2><p>第一种：应用前向迭代器</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="built_in">string</span>&gt;::iterator iter;</span><br><span class="line"><span class="keyword">for</span>(iter = mapStudent.<span class="built_in">begin</span>(); iter != mapStudent.<span class="built_in">end</span>(); iter++)</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;iter-&gt;first&lt;&lt;<span class="string">"  "</span>&lt;&lt;iter-&gt;second&lt;&lt;<span class="built_in">end</span>;</span><br></pre></td></tr></table></figure>
+<p>第二种：应用反向迭代器</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="built_in">string</span>&gt;::reverse_iterator iter;</span><br><span class="line"><span class="keyword">for</span>(iter = mapStudent.rbegin(); iter != mapStudent.rend(); iter++)</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;iter-&gt;first&lt;&lt;<span class="string">"  "</span>&lt;&lt;iter-&gt;second&lt;&lt;<span class="built_in">end</span>;</span><br></pre></td></tr></table></figure>
+<p>第三种：用数组方式</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> nsize = mapStudent.<span class="built_in">size</span>()</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> nIndex = <span class="number">1</span>; nIndex &lt;= nSize; nIndex++)</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;mapStudent[nIndex]&lt;&lt;<span class="built_in">end</span>;</span><br></pre></td></tr></table></figure>
+<p>/////</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(it=m.<span class="built_in">begin</span>();it!=m.<span class="built_in">end</span>();++it)</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;<span class="string">"key: "</span>&lt;&lt;it-&gt;first &lt;&lt;<span class="string">" value: "</span>&lt;&lt;it-&gt;second&lt;&lt;<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+<h1 id="set"><a href="#set" class="headerlink" title="set"></a>set</h1><p>set是集合，set中不会包含重复的元素，这是和vector的区别。</p>
+<h2 id="遍历-1"><a href="#遍历-1" class="headerlink" title="遍历"></a>遍历</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt;ss;</span><br><span class="line">        <span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt;::iterator it;</span><br><span class="line">        <span class="keyword">for</span>(it = ss.<span class="built_in">begin</span>(); it != ss.<span class="built_in">end</span>(); it++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%d "</span>,*it);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><ol>
+<li>begin()         返回指向第一个元素的迭代器</li>
+<li>clear()         清除所有元素</li>
+<li>count()         返回某个值元素的个数</li>
+<li>empty()         如果集合为空，返回true</li>
+<li>end()           返回指向最后一个元素的迭代器</li>
+<li>equal_range()   返回集合中与给定值相等的上下限的两个迭代器</li>
+<li>erase()         删除集合中的元素</li>
+<li>find()          返回一个指向被查找到元素的迭代器</li>
+<li>get_allocator() 返回集合的分配器</li>
+<li>insert()        在集合中插入元素 </li>
+<li>lower_bound()   返回指向大于（或等于）某值的第一个元素的迭代器</li>
+<li>key_comp()      返回一个用于元素间值比较的函数</li>
+<li>max_size()      返回集合能容纳的元素的最大限值</li>
+<li>rbegin()        返回指向集合中最后一个元素的反向迭代器</li>
+<li>rend()          返回指向集合中第一个元素的反向迭代器</li>
+<li>size()          集合中元素的数目</li>
+<li>swap()          交换两个集合变量</li>
+<li>upper_bound()   返回大于某个值元素的迭代器</li>
+<li>value_comp()    返回一个用于比较元素间的值的函数</li>
+</ol>
 
       
       <!-- reward -->
@@ -169,7 +210,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/02/15/%E9%AB%98%E7%B2%BE%E5%BA%A6%E4%B9%98%E4%B8%8E%E9%99%A4/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/02/20/STL%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -185,19 +226,10 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/02/20/STL%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            STL相关知识
-          
-        </div>
-      </a>
     
-    
-      <a href="/2020/02/15/%E6%B4%9B%E8%B0%B7P1080-%E5%9B%BD%E7%8E%8B%E6%B8%B8%E6%88%8F/" class="article-nav-link">
+      <a href="/2020/02/15/%E9%AB%98%E7%B2%BE%E5%BA%A6%E4%B9%98%E4%B8%8E%E9%99%A4/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">洛谷P1080 国王游戏</div>
+        <div class="article-nav-title">高精度乘与除 </div>
       </a>
     
   </nav>
