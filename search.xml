@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>猴子分桃问题</title>
+    <url>/2020/03/01/%E7%8C%B4%E5%AD%90%E5%88%86%E6%A1%83%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p><img src="https://img-blog.csdnimg.cn/20200301195253534.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzE5ODMwNTkx,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>一道看似很简单的题，想了好久………….</strong><a id="more"></a></p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>首先我们给这堆桃子里放入4个桃子，这样第一只猴子分桃使正好可以平均分为5份(不用扔了)，每一份比原来多一个，第一只猴子拿走一份(比原来多拿了一个，这里我们可以理解为扔的那一个被他拿走了)。剩下的4份比原还来比原来多四个，加上要扔的那一个没扔，多五个。此时也可以平分为5份，这只猴子也比原来多拿了一个……依次类推,直到五只猴子都拿完。<br>因为每只猴子都拿走了自己原本的那一份以及自己扔的那一个，所以剩下的那堆比原来多四个。剩下的桃子是(x+4)(4/5)(4/5)(4/5)(4/5)(4/5)-4为整数，即(x+4)(4/5)^5为整数，即(x+4)一定要能被 5 ^5＝3125整除，所以x+4最小是3125，此时，x为3121。</p>
+]]></content>
+      <tags>
+        <tag>思维</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>STL相关知识</title>
     <url>/2020/02/20/STL%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/</url>
     <content><![CDATA[<p>﻿<strong>C++的标准模板库（Standard Template Library，简称STL）是一个容器和算法的类库。容器往往包含同一类型的数据。STL中比较常用的容器是vector，set和map等</strong>。<a id="more"></a></p>
