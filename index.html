@@ -64,6 +64,75 @@
     
     
     
+    <article id="post-归并排序求逆序对数" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/10/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F%E6%B1%82%E9%80%86%E5%BA%8F%E5%AF%B9%E6%95%B0/"
+    >归并排序求逆序对数</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/10/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F%E6%B1%82%E9%80%86%E5%BA%8F%E5%AF%B9%E6%95%B0/" class="article-date">
+  <time datetime="2020-03-10T07:01:35.000Z" itemprop="datePublished">2020-03-10</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%B8%80%E4%BA%9B%E9%A2%98/">一些题</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><p>归并排序是不断运用分治的思想，不断的将数组二分。然后将两个数组的数进行依次比较，在比较过程中依次将较小的数放在另一个新的数组中，在这个过程中如果出现前边数组的数大于后边数组的数，即出现了逆序数，统计即可。当两个数组都遍历到最后时，新的数组中的数即为有序数，然后将这个有序数组重新赋予原数组，在进行下一个分治过程即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;bits&#x2F;stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int a[1000000];</span><br><span class="line">int t[1000000];</span><br><span class="line">int ans&#x3D;0,n;</span><br><span class="line">void merge(int l,int r)</span><br><span class="line">&#123;</span><br><span class="line">	if(l&#x3D;&#x3D;r) return ;</span><br><span class="line">	int mid&#x3D;(l+r)&#x2F;2;</span><br><span class="line">	merge(l,mid);</span><br><span class="line">	merge(mid+1,r); </span><br><span class="line">	int i&#x3D;l,j&#x3D;mid+1,p&#x3D;l;</span><br><span class="line">	while(i&lt;&#x3D;mid&amp;&amp;j&lt;&#x3D;r) </span><br><span class="line">	&#123;</span><br><span class="line">		if(a[i]&lt;a[j])</span><br><span class="line">		t[p++]&#x3D;a[i++];</span><br><span class="line">		else</span><br><span class="line">		&#123;</span><br><span class="line">			t[p++]&#x3D;a[j++];</span><br><span class="line">			ans&#x3D;ans+mid-i+1;&#x2F;&#x2F;此时两边都是排好序了的，当前面的序列中有一个数大于后面的一个数时，前面序列中剩下的数都大于这个数，共mid-i+1个</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	while(i&lt;&#x3D;mid)</span><br><span class="line">	&#123;</span><br><span class="line">		t[p++]&#x3D;a[i++];</span><br><span class="line">	&#125;</span><br><span class="line">	while(j&lt;&#x3D;r)</span><br><span class="line">	&#123;</span><br><span class="line">		t[p++]&#x3D;a[j++];</span><br><span class="line">	&#125;</span><br><span class="line">	for(int i&#x3D;l;i&lt;&#x3D;r;i++)</span><br><span class="line">	a[i]&#x3D;t[i];&#x2F;&#x2F;把有序数组t复制给数组a变成有序的，保证合并上一层有序数列时满足条件</span><br><span class="line">&#125;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	cin&gt;&gt;n;</span><br><span class="line">	for(int i&#x3D;1;i&lt;&#x3D;n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		cin&gt;&gt;a[i];</span><br><span class="line">	&#125;</span><br><span class="line">	merge(1,n);</span><br><span class="line">	printf(&quot;%d\n&quot;,ans);</span><br><span class="line">	return 0;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+      <!-- reward -->
+      
+    </div>
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-2020HPU蓝桥杯省赛训练-一" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -684,78 +753,6 @@
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%80%9D%E7%BB%B4/" rel="tag">思维</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-洛谷p1028-数的计算" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/02/11/%E6%B4%9B%E8%B0%B7p1028-%E6%95%B0%E7%9A%84%E8%AE%A1%E7%AE%97/"
-    >洛谷p1028 数的计算</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/02/11/%E6%B4%9B%E8%B0%B7p1028-%E6%95%B0%E7%9A%84%E8%AE%A1%E7%AE%97/" class="article-date">
-  <time datetime="2020-02-11T07:34:37.000Z" itemprop="datePublished">2020-02-11</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%B8%80%E4%BA%9B%E9%A2%98/">一些题</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <p><strong>记忆化搜索</strong>
-      
-      <a class="article-more-link" href="/2020/02/11/%E6%B4%9B%E8%B0%B7p1028-%E6%95%B0%E7%9A%84%E8%AE%A1%E7%AE%97/">阅读更多...</a>
-      
-      
-      <!-- reward -->
-      
-    </div>
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%B0%E5%BF%86%E5%8C%96%E6%90%9C%E7%B4%A2/" rel="tag">记忆化搜索</a></li></ul>
 
 
     </footer>
