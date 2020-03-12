@@ -64,6 +64,76 @@
     
     
     
+    <article id="post-01背包问题" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/12/01%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/"
+    >01背包问题</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/12/01%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" class="article-date">
+  <time datetime="2020-03-12T03:46:28.000Z" itemprop="datePublished">2020-03-12</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>有N件物品和一个容量为V的背包。第i件物品的价值是c[i]，重量是w[i]。求解将哪些物品装入背包可使这些物品的重量总和不超过背包容量，且价值总和最大。每种物品只有一件，可以选择放或者不放。</p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>首先定义状态转移方程dp[i] [j]为在容量为j的背包中放入前i件物品，所具有的最大价值。</p>
+<p>当背包足够装下某一个物品时，对于这个物品都有放与不放两种状态，对应的状态转移方程为：</p>
+<script type="math/tex; mode=display">
+dp[i][j]=max(dp[i-1][j-w[i]]+c[i],dp[i-1][j]</script><h2 id="code"><a href="#code" class="headerlink" title="code"></a>code</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,v,c[<span class="number">1000000</span>],w[<span class="number">1000000</span>];</span><br><span class="line"><span class="keyword">int</span> dp[<span class="number">105</span>][<span class="number">1005</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; v &gt;&gt; n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=n; i++)</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; c[i] &gt;&gt; w[i];</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=n; i++) <span class="comment">//物品 </span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=v; j&gt;=<span class="number">0</span>; j--) <span class="comment">//容量 </span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(j &gt;= w[i]) <span class="comment">//当背包剩余容量大于此物品时 </span></span><br><span class="line">                dp[i][j] = <span class="built_in">max</span>(dp[i<span class="number">-1</span>][j-w[i]]+c[i], dp[i<span class="number">-1</span>][j]);</span><br><span class="line">            <span class="keyword">else</span>      <span class="comment">//当背包剩余容量小于此物品时</span></span><br><span class="line">                dp[i][j] = dp[i<span class="number">-1</span>][j];           </span><br><span class="line">        &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; dp[n][v] &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+      <!-- reward -->
+      
+    </div>
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" rel="tag">背包问题</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-归并排序求逆序对数" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -106,9 +176,10 @@
       
 
       
-      <h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><p>归并排序是不断运用分治的思想，不断的将数组二分。然后将两个数组的数进行依次比较，在比较过程中依次将较小的数放在另一个新的数组中，在这个过程中如果出现前边数组的数大于后边数组的数，即出现了逆序数，统计即可。当两个数组都遍历到最后时，新的数组中的数即为有序数，然后将这个有序数组重新赋予原数组，在进行下一个分治过程即可。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> a[<span class="number">1000000</span>];</span><br><span class="line"><span class="keyword">int</span> t[<span class="number">1000000</span>];</span><br><span class="line"><span class="keyword">int</span> ans=<span class="number">0</span>,n;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(l==r) <span class="keyword">return</span> ;</span><br><span class="line">	<span class="keyword">int</span> mid=(l+r)/<span class="number">2</span>;</span><br><span class="line">	merge(l,mid);</span><br><span class="line">	merge(mid+<span class="number">1</span>,r); </span><br><span class="line">	<span class="keyword">int</span> i=l,j=mid+<span class="number">1</span>,p=l;</span><br><span class="line">	<span class="keyword">while</span>(i&lt;=mid&amp;&amp;j&lt;=r) </span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(a[i]&lt;a[j])</span><br><span class="line">		t[p++]=a[i++];</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			t[p++]=a[j++];</span><br><span class="line">			ans=ans+mid-i+<span class="number">1</span>;<span class="comment">//此时两边都是排好序了的，当前面的序列中有一个数大于后面的一个数时，前面序列中剩下的数都大于这个数，共mid-i+1个</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span>(i&lt;=mid)</span><br><span class="line">	&#123;</span><br><span class="line">		t[p++]=a[i++];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span>(j&lt;=r)</span><br><span class="line">	&#123;</span><br><span class="line">		t[p++]=a[j++];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=l;i&lt;=r;i++)</span><br><span class="line">	a[i]=t[i];<span class="comment">//把有序数组t复制给数组a变成有序的，保证合并上一层有序数列时满足条件</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;a[i];</span><br><span class="line">	&#125;</span><br><span class="line">	merge(<span class="number">1</span>,n);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+      <h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序
+      
+      <a class="article-more-link" href="/2020/03/10/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F%E6%B1%82%E9%80%86%E5%BA%8F%E5%AF%B9%E6%95%B0/">阅读更多...</a>
+      
       
       <!-- reward -->
       
@@ -681,78 +752,6 @@
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%B0%E5%BF%86%E5%8C%96%E6%90%9C%E7%B4%A2/" rel="tag">记忆化搜索</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-洛谷P1149-火柴棒等式" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/02/11/%E6%B4%9B%E8%B0%B7P1149-%E7%81%AB%E6%9F%B4%E6%A3%92%E7%AD%89%E5%BC%8F/"
-    >洛谷P1149 火柴棒等式</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/02/11/%E6%B4%9B%E8%B0%B7P1149-%E7%81%AB%E6%9F%B4%E6%A3%92%E7%AD%89%E5%BC%8F/" class="article-date">
-  <time datetime="2020-02-11T07:37:44.000Z" itemprop="datePublished">2020-02-11</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E4%B8%80%E4%BA%9B%E9%A2%98/">一些题</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <p><strong>思维</strong>
-      
-      <a class="article-more-link" href="/2020/02/11/%E6%B4%9B%E8%B0%B7P1149-%E7%81%AB%E6%9F%B4%E6%A3%92%E7%AD%89%E5%BC%8F/">阅读更多...</a>
-      
-      
-      <!-- reward -->
-      
-    </div>
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%80%9D%E7%BB%B4/" rel="tag">思维</a></li></ul>
 
 
     </footer>
