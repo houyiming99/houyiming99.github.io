@@ -143,7 +143,7 @@ dp[i][j]=max(dp[i-1][j-w[i]]+c[i],dp[i-1][j]</script><h2 id="code"><a href="#cod
 <h2 id="高精度除"><a href="#高精度除" class="headerlink" title="高精度除"></a>高精度除</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// sum为高精度的被除数，x为除数，数组ans里存的是商（后边为高位，前边为低位）。</span></span><br><span class="line"><span class="comment">// lend记录数组ans的长度。</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">division</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> t=<span class="number">0</span>;</span><br><span class="line">	lend=lens;</span><br><span class="line">	<span class="built_in">memset</span>(ans,<span class="number">0</span>,<span class="keyword">sizeof</span>(ans));</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=lend;i&gt;=<span class="number">1</span>;i--)&#123;</span><br><span class="line">		t*=<span class="number">10</span>;</span><br><span class="line">		t+=sum[i];</span><br><span class="line">		<span class="keyword">if</span>(t&gt;=x)&#123;</span><br><span class="line">			ans[i]=t/x;</span><br><span class="line">			t%=x;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span>(ans[lend]==<span class="number">0</span>)&#123;</span><br><span class="line">		<span class="keyword">if</span>(lend==<span class="number">1</span>)</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		lend--;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>模板</category>
+        <category>算法模板</category>
       </categories>
   </entry>
   <entry>
@@ -433,7 +433,7 @@ a_i*b_i</script><p>为关键字排序即可</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">ksm</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b,<span class="keyword">int</span> c)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> <span class="keyword">int</span> ans=<span class="number">1</span>;</span><br><span class="line"> a=a%c;</span><br><span class="line"> <span class="keyword">while</span>(b&gt;<span class="number">0</span>) </span><br><span class="line"> &#123;</span><br><span class="line">  <span class="keyword">if</span>(b%<span class="number">2</span>==<span class="number">1</span>)</span><br><span class="line">  ans=ans*a%c;</span><br><span class="line">  b=b/<span class="number">2</span>;</span><br><span class="line">  a=(a*a)%c;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>模板</category>
+        <category>算法模板</category>
       </categories>
   </entry>
 </search>
