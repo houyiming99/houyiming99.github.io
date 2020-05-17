@@ -65,6 +65,76 @@
     
     
     
+    <article id="post-强连通分量-缩点" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/05/15/%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F-%E7%BC%A9%E7%82%B9/"
+    >强连通分量+缩点</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/05/15/%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F-%E7%BC%A9%E7%82%B9/" class="article-date">
+  <time datetime="2020-05-15T09:32:35.000Z" itemprop="datePublished">2020-05-15</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/">基础算法</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e5</span>+<span class="number">5</span>;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; g[N],id[N];</span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">int</span> low[N],dfn[N],st[N],instack[N],belong[N],in[N],tot=<span class="number">0</span>,cnt=<span class="number">0</span>,scc=<span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">tarjan</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> v;</span><br><span class="line">    low[x]=dfn[x]=++tot;</span><br><span class="line">    st[++cnt]=x;</span><br><span class="line">    instack[x]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;g[x].<span class="built_in">size</span>();i++)</span><br><span class="line">    &#123;</span><br><span class="line">        v=g[x][i];</span><br><span class="line">        <span class="keyword">if</span>(!dfn[v])</span><br><span class="line">        &#123;</span><br><span class="line">            tarjan(v);</span><br><span class="line">            low[x]=<span class="built_in">min</span>(low[x],low[v]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(instack[v])</span><br><span class="line">        &#123;</span><br><span class="line">            low[x]=<span class="built_in">min</span>(low[x],dfn[v]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(low[x]==dfn[x])</span><br><span class="line">    &#123;</span><br><span class="line">        scc++;</span><br><span class="line">        <span class="keyword">do</span>&#123;</span><br><span class="line">            v=st[cnt--];</span><br><span class="line">            instack[v]=<span class="number">0</span>;</span><br><span class="line">            belong[v]=scc;</span><br><span class="line">            id[scc].push_back(v);</span><br><span class="line">        &#125;<span class="keyword">while</span>(x!=v);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">memset</span>(dfn,<span class="number">0</span>,<span class="keyword">sizeof</span> dfn);</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    <span class="keyword">int</span> u[N],v[N];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;u[i]&gt;&gt;v[i];</span><br><span class="line">        g[u[i]].push_back(v[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(!dfn[i])</span><br><span class="line">            tarjan(i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)<span class="comment">//缩点</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(belong[u[i]]==belong[v[i]])<span class="keyword">continue</span>;</span><br><span class="line">        in[belong[v[i]]]++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=scc;i++)</span><br><span class="line">        sort(id[i].<span class="built_in">begin</span>(),id[i].<span class="built_in">end</span>());</span><br><span class="line">    <span class="keyword">int</span> sum=<span class="number">0</span>,ans[N];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=scc;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(!in[i])</span><br><span class="line">        &#123;</span><br><span class="line">            sum++;</span><br><span class="line">            ans[sum]=id[i][<span class="number">0</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,sum);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=sum;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d "</span>,ans[i]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+      <!-- reward -->
+      
+    </div>
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tarjan/" rel="tag">tarjan</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-如何优雅的使用chrome浏览器" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -707,78 +777,6 @@ dp[i][j]=max(dp[i-1][j-w[i]]+c[i],dp[i-1][j]</script><h2 id="code"><a href="#cod
 
 </article>
     
-    <article id="post-洛谷P1309-瑞士轮(归并排序)" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/02/12/%E6%B4%9B%E8%B0%B7P1309-%E7%91%9E%E5%A3%AB%E8%BD%AE(%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F)/"
-    >洛谷P1309 瑞士轮(归并排序)</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/02/12/%E6%B4%9B%E8%B0%B7P1309-%E7%91%9E%E5%A3%AB%E8%BD%AE(%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F)/" class="article-date">
-  <time datetime="2020-02-12T08:51:05.000Z" itemprop="datePublished">2020-02-12</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/">基础算法</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <p><strong>当sort大法不再好用的时候。</strong></p>
-      
-      <a class="article-more-link" href="/2020/02/12/%E6%B4%9B%E8%B0%B7P1309-%E7%91%9E%E5%A3%AB%E8%BD%AE(%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F)/">阅读更多...</a>
-      
-      
-      <!-- reward -->
-      
-    </div>
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/" rel="tag">归并排序</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
   </article>
   
 
@@ -863,10 +861,6 @@ dp[i][j]=max(dp[i-1][j-w[i]]+c[i],dp[i-1][j]</script><h2 id="code"><a href="#cod
     
     <li class="nav-item">
       <a class="nav-item-link" href="/tags">标签</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/about">关于我们</a>
     </li>
     
   </ul>

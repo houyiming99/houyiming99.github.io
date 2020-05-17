@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://houyiming99.github.io/"/>
-  <updated>2020-03-13T09:32:56.781Z</updated>
+  <updated>2020-05-17T03:14:47.195Z</updated>
   <id>http://houyiming99.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>强连通分量+缩点</title>
+    <link href="http://houyiming99.github.io/2020/05/15/%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F-%E7%BC%A9%E7%82%B9/"/>
+    <id>http://houyiming99.github.io/2020/05/15/%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F-%E7%BC%A9%E7%82%B9/</id>
+    <published>2020-05-15T09:32:35.000Z</published>
+    <updated>2020-05-17T03:14:47.195Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span
+        
+      
+    
+    </summary>
+    
+    
+      <category term="基础算法" scheme="http://houyiming99.github.io/categories/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="tarjan" scheme="http://houyiming99.github.io/tags/tarjan/"/>
+    
+  </entry>
   
   <entry>
     <title>如何优雅的使用chrome浏览器</title>
